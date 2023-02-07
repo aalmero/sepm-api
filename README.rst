@@ -9,7 +9,7 @@ sepm-api
    :target: https://travis-ci.org/aalmero/sepm-api
    :alt: Latest Travis CI build status
 
-Symantec Endpoint Protection API
+Symantec Endpoint Protection Manager API
 
 Usage
 -----
