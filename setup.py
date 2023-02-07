@@ -22,7 +22,7 @@ setup(
     author="Alex Almero",
     author_email="aalmero@gmail.com",
 
-    description="Symantec Endpoint Protection API",
+    description="Symantec Endpoint Protection Manager API",
     long_description=read("README.rst"),
 
     packages=find_packages(exclude=('tests',)),
