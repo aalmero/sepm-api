@@ -12,7 +12,6 @@ from sepm.config import *
 from sepm.exceptions import *
 from sepm.__init__ import __version__
 
-
 # main module interface
 class RestApiSession(object):
     def __init__(
@@ -118,37 +117,15 @@ class RestApiSession(object):
                     else:
                         continue
 
+                # 2XX success
                 if response.ok:
                     if self._logger:
                         self._logger.info(f'{tag}, {operation} - {status} {reason}')
 
+                    ret = None
                     try:
                         if method == 'GET' and response.content.strip():
-                            response = response.json()
-                        return response
-                    except json.decoder.JSONDecodeError as e:
-                        if self._logger:
-                            self._logger.warning(f'{tag}, {operation} - {e}, retrying in 1 second')
-                        time.sleep(1)
-                        retries -= 1
-                        if retries == 0:
-                            raise APIError(metadata, response)
-                        else:
-                            continue
-
-                # 2XX success
-                if response.ok:
-                    if 'page' in metadata:
-                        counter = metadata['page']
-                        if self._logger:
-                            self._logger.info(f'{tag}, {operation}; page {counter} - {status} {reason}')
-                    else:
-                        if self._logger:
-                            self._logger.info(f'{tag}, {operation} - {status} {reason}')
-                    # For non-empty response to GET, ensure valid JSON
-                    try:
-                        if method == 'GET' and response.content.strip():
-                            response.json()
+                            ret = response.json()
                         return response
                     except json.decoder.JSONDecodeError as e:
                         if self._logger:
@@ -180,6 +157,7 @@ class RestApiSession(object):
         metadata['url'] = url
         metadata['params'] = params
         response = self.request(metadata, 'GET', url, params=params)
+
         ret = None
         if response:
             if response.content.strip():
