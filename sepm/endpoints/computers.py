@@ -1,3 +1,5 @@
+import urllib
+
 class Computers(object):
     def __init__(self, session):
         super(Computers, self).__init__()
@@ -10,5 +12,16 @@ class Computers(object):
         }
 
         resource = f'/computers'
+
+        return self._session.get(metadata, resource)
+
+    def getComputer(self, computerName: str):
+        metadata = {
+            'tags':['computer', 'configure'],
+            'operation': 'getComputer'
+        }
+
+        computerName = urllib.parse.quote(str(computerName), safe='')
+        resource = f'/computers/?computerName={computerName}'
 
         return self._session.get(metadata, resource)
