@@ -5,7 +5,7 @@ class Computers(object):
         super(Computers, self).__init__()
         self._session = session
 
-    def getComputers(self):
+    def getComputers(self, **kwargs):
         metadata = {
             'tags':['computers', 'configure'],
             'operation': 'getComputers'
@@ -13,15 +13,8 @@ class Computers(object):
 
         resource = f'/computers'
 
-        return self._session.get(metadata, resource)
+        params = {k.strip(): v for k, v in kwargs.items()}
 
-    def getComputer(self, computerName: str):
-        metadata = {
-            'tags':['computer', 'configure'],
-            'operation': 'getComputer'
-        }
+        return self._session.get(metadata, resource, params)
 
-        computerName = urllib.parse.quote(str(computerName), safe='')
-        resource = f'/computers/?computerName={computerName}'
 
-        return self._session.get(metadata, resource)
