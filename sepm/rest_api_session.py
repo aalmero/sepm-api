@@ -23,6 +23,8 @@ class RestApiSession(object):
         base_url=DEFAULT_BASE_URL,
         auth_url=AUTH_URL,
         simulate=SIMULATE_API,
+        retry_4xx_error=RETRY_4XX_ERROR,
+        retry_4xx_error_wait_time=RETRY_4XX_ERROR_WAIT_TIME,
         maximum_retries=MAXIMUM_RETRIES,
     ):
         super(RestApiSession, self).__init__()
@@ -36,6 +38,8 @@ class RestApiSession(object):
         self._base_url = str(base_url)
         self._auth_url = str(auth_url)
         self._simulate = simulate
+        self._retry_4xx_error = retry_4xx_error
+        self._retry_4xx_error_wait_time = retry_4xx_error_wait_time
         self._maximum_retries = maximum_retries
 
         #create payload for authentication
@@ -88,12 +92,12 @@ class RestApiSession(object):
         # Set maximum number of retries
         retries = self._maximum_retries
 
-        # Option to simulate non-safe API calls without actually sending them
+        # simulate non-safe API calls without actually sending them
         if self._logger:
             self._logger.debug(metadata)
         if self._simulate and method != 'GET':
             if self._logger:
-                self._logger.info(f'{tag}, {operation} - SIMULATED')
+                self._logger.info(f'{tag}, {operation}, {method} - {abs_url} - SIMULATED')
             return None
         else:
             response = None
@@ -146,11 +150,27 @@ class RestApiSession(object):
                     if retries == 0:
                         raise APIError(metadata, response)
 
-                # All other client-side errors
+                # 4XX errors
                 else:
-                    if self._logger:
-                        self._logger.error(f'{tag}, {operation} - {status} {reason}, {message}')
-                    raise APIError(metadata, response)
+                    try:
+                        message = response.json()
+                    except ValueError:
+                        message = response.content[:100]
+
+                    if self._retry_4xx_error:
+                        wait = random.randint(1, self._retry_4xx_error_wait_time)
+                        if self._logger:
+                            self._logger.warning(f'{tag}, {operation} - {status} {reason}, retrying in {wait} seconds')
+                        time.sleep(wait)
+                        retries -= 1
+                        if retries == 0:
+                            raise APIError(metadata, response)
+
+                    # All other client-side errors
+                    else:
+                        if self._logger:
+                            self._logger.error(f'{tag}, {operation} - {status} {reason}, {message}')
+                        raise APIError(metadata, response)
 
     def get(self, metadata, url, params=None):
         metadata['method'] = 'GET'
@@ -189,10 +209,10 @@ class RestApiSession(object):
             response.close()
         return ret
 
-    def delete(self, metadata, url):
+    def delete(self, metadata, url, json=None):
         metadata['method'] = 'DELETE'
         metadata['url'] = url
-        response = self.request(metadata, 'DELETE', url)
+        response = self.request(metadata, 'DELETE', url, json=json)
         if response:
             response.close()
         return None

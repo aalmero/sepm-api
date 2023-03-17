@@ -5,7 +5,24 @@ import logging
 import os
 
 from sepm.rest_api_session import *
+from sepm.endpoints.administrators import Administrators
+from sepm.endpoints.blacklist import Blacklist
+from sepm.endpoints.cloud import Cloud
+from sepm.endpoints.commands import Commands
 from sepm.endpoints.computers import Computers
+from sepm.endpoints.content import Content
+from sepm.endpoints.domains import Domains
+from sepm.endpoints.events import Events
+from sepm.endpoints.group_update_provider import GroupUpdateProvider
+from sepm.endpoints.groups import Groups
+from sepm.endpoints.identity import Identity
+from sepm.endpoints.notifications import Notifications
+from sepm.endpoints.replication import Replication
+from sepm.endpoints.reporting import Reporting
+from sepm.endpoints.requested_files import RequestedFiles
+from sepm.endpoints.statistics import Statistics
+from sepm.endpoints.threat_defense_for_active_directory import ThreatDefenseForActiveDirectory
+from sepm.endpoints.version import Version
 
 #config import
 from sepm.config import (
@@ -106,4 +123,23 @@ class SymantecEndpointProtectionManagerAPI(object):
         )
 
         # API endpoints definition
+        self.administrators = Administrators(self._session)
+        self.blacklist = Blacklist(self._session)
+        self.cloud = Cloud(self._session)
+        self.commands = Commands(self._session)
         self.computers = Computers(self._session)
+        self.content = Content(self._session)
+        self.domains = Domains(self._session)
+        self.events = Events(self._session)
+        self.group_update_provider = GroupUpdateProvider(self._session)
+        self.groups = Groups(self._session)
+        self.identity = Identity(self._session)
+        self.notifications = Notifications(self._session)
+        self.policies = Policies(self._session)
+        self.replication = Replication(self._session)
+        self.reporting = Reporting(self._session)
+        self.requested_files = RequestedFiles(self._session)
+        self.statistics = Statistics(self._session)
+        self.threat_defense_for_active_directory = ThreatDefenseForActiveDirectory(self._session)
+        self.version = Version(self._session)
+
