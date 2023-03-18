@@ -79,7 +79,7 @@ class Computers(object):
         """
 
         metadata = {
-            'tags':['computers',],
+            'tags':['computers', 'delete',],
             'operation': 'Delete Clients'
         }
 
@@ -100,7 +100,7 @@ class Computers(object):
         """
 
         metadata = {
-            'tags':['computers', ],
+            'tags':['computers', 'enroll',],
             'operation': 'Enroll'
         }
 
@@ -121,7 +121,7 @@ class Computers(object):
         """
 
         metadata = {
-            'tags':['computers', 'configure'],
+            'tags':['computers', 'enroll', ],
             'operation': 'Enroll'
         }
 
