@@ -1,17 +1,25 @@
+import sys
 from datetime import datetime
+
+sys.path.append('../') # for local testing
 
 import sepm
 
+#ACC-FAC10-L118 for testing
+
 def main():
     #instantiate the API session
-    sepm = sepm.SymantecEndpointProtectionManagerAPI(
-                username='',
-                password='',
-                domain='',
-                base_url=''
-    )
+    sepm_api = sepm.SymantecEndpointProtectionManagerAPI() #using default
 
-    computers = sepm.computers.getComputers()
+    # get ALL computers
+    computers = sepm_api.computers.getComputers()
+
+    print(computers)
+
+    #get specific computers
+    computer = sepm_api.computers.getComputers(computerName='ACC-FAC10-L118')
+
+    print(computer)
 
 if __name__ == '__main__':
     start_time = datetime.now()

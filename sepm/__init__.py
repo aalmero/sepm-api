@@ -17,6 +17,7 @@ from sepm.endpoints.group_update_provider import GroupUpdateProvider
 from sepm.endpoints.groups import Groups
 from sepm.endpoints.identity import Identity
 from sepm.endpoints.notifications import Notifications
+from sepm.endpoints.policies import Policies
 from sepm.endpoints.replication import Replication
 from sepm.endpoints.reporting import Reporting
 from sepm.endpoints.requested_files import RequestedFiles

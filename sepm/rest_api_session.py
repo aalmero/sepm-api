@@ -120,7 +120,7 @@ class RestApiSession(object):
                         raise APIError(metadata, response)
                     else:
                         continue
-
+                # TODO: not all endpoints return response as json
                 # 2XX success
                 if response.ok:
                     if self._logger:
