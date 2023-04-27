@@ -70,9 +70,10 @@ class SymantecEndpointProtectionManagerAPI(object):
         username = username or os.environ.get(API_USERNAME_ENV)
         password = password or os.environ.get(API_PASSWORD_ENV)
         domain = domain or os.environ.get(API_DOMAIN_ENV)
+        base_url = os.environ.get(API_BASE_URL_ENV) or base_url
+        auth_url = '{0}{1}'.format(base_url, auth_url)
 
-        print('username={0}, password={1}, domain={2}'.format(username, password, domain))
-        #logging.info('username = %s', username)
+        print('base_url={3}, username={0}, password={1}, domain={2}'.format(username, password, domain, base_url))
 
         if not username or not password:
             raise APIError()

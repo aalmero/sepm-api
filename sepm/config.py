@@ -4,12 +4,13 @@
 API_USERNAME_ENV = 'API_USERNAME'
 API_PASSWORD_ENV = 'API_PASSWORD'
 API_DOMAIN_ENV = 'API_DOMAIN'
+API_BASE_URL_ENV = 'API_BASE_URL'
 
 # Base URL preceding all endpoint resources
-DEFAULT_BASE_URL = 'https://epp.internal.corp:8446/sepm/api/v1'
+DEFAULT_BASE_URL = 'https://localhost:8446/sepm/api/v1'
 
 # Authentication URL
-AUTH_URL = '{0}/identity/authenticate'.format(DEFAULT_BASE_URL)
+AUTH_URL = '/identity/authenticate'
 
 # create output log file
 OUTPUT_LOG = False
