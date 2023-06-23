@@ -19,7 +19,7 @@ NOTE: The Python wrapper API is work in progress and should be treated as a soft
 Usage
 -----
 
-    **Usages can be found in the `examples <https://github.com/aalmero/sepm-api/tree/main/examples>`_ folder.**
+    Refer to the `examples <https://github.com/aalmero/sepm-api/tree/main/examples>`_ folder.
 
 
 Installation
@@ -41,6 +41,7 @@ Environment Variables::
 
 Compatibility
 -------------
+Symantec Endpoint Protection Manager API 14.3
 
 License
 -------
