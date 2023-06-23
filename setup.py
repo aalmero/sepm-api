@@ -15,7 +15,7 @@ def read(filename):
 
 setup(
     name="sepm-api",
-    version="0.0.1",
+    version="0.0.5",
     url="https://github.com/aalmero/sepm-api",
     license='MIT',
 

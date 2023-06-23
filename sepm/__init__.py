@@ -41,7 +41,7 @@ from sepm.config import (
     SIMULATE_API,
 )
 
-__version__ = '0.0.1'
+__version__ = '0.0.5'
 __author__ = 'Alex Almero <aalmero@gmail.com>'
 __all__ = []
 
