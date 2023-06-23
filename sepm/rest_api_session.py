@@ -50,7 +50,6 @@ class RestApiSession(object):
         }
 
         auth_req = requests.post(self._auth_url,
-                    verify=False,
                     headers= {"Content-Type": "application/json"},
                     data=json.dumps(payload))
 
