@@ -34,7 +34,7 @@ class RestApiSession(object):
         self._username = username
         self._password = password
         self._domain = domain
-        self._api_key = "CHANGEME"
+        self._api_key = "CHANGEME" # this will be updated on authn success
         self._base_url = str(base_url)
         self._auth_url = str(auth_url)
         self._simulate = simulate
