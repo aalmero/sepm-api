@@ -11,8 +11,8 @@ def main():
     #instantiate the API session
     sepm_api = sepm.SymantecEndpointProtectionManagerAPI() #using default
 
-    # get ALL computers
-    id = 'ACC-FAC10-L118'
+    # use uniqueId
+    id = '5184AF1F0AD740896E99FCCD3DB77EAB'
     result = sepm_api.computers.deleteComputer(id)
 
 if __name__ == '__main__':

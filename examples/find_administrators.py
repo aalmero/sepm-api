@@ -1,4 +1,4 @@
-import sys
+import sys, pprint
 from datetime import datetime
 
 sys.path.append('../') # for local testing
@@ -14,11 +14,11 @@ def main():
     # get ALL administrators
     administrators = sepm_api.administrators.getAllAdminUserDetails()
 
-    print(administrators)
+    pprint.pprint(administrators)
 
-    #get specific administrator
+    #get specific administrator, use id
     administrator = sepm_api.administrators.getAdminUserDetails(id='C71763EE0AC7A45E10C52498022E7305')
-    print(administrator)
+    pprint.pprint(administrator)
 
 if __name__ == '__main__':
     start_time = datetime.now()

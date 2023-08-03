@@ -1,5 +1,6 @@
 import sys
 from datetime import datetime
+import pprint
 
 sys.path.append('../') # for local testing
 
@@ -12,14 +13,15 @@ def main():
     sepm_api = sepm.SymantecEndpointProtectionManagerAPI() #using default
 
     # get ALL computers
-    computers = sepm_api.computers.getComputers()
+    #computers = sepm_api.computers.getComputers()
 
-    print(computers)
+    #print(computers)
 
-    #get specific computers
-    computer = sepm_api.computers.getComputers(computerName='ACC-FAC10-L118')
+    #get specific computers, use computerName
+    computerName = 'AMANCTXBFUD09'
+    computer = sepm_api.computers.getComputers(computerName=computerName)
 
-    print(computer)
+    pprint.pprint(computer)
 
 if __name__ == '__main__':
     start_time = datetime.now()
