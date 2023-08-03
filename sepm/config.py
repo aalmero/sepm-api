@@ -31,7 +31,7 @@ SUPPRESS_LOGGING = False
 INHERIT_LOGGING_CONFIG = False
 
 # Simulate POST/PUT/DELETE calls
-SIMULATE_API = True
+SIMULATE_API = False
 
 # Retry if encountering other 4XX error (besides 429)?
 RETRY_4XX_ERROR = False
