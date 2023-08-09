@@ -15,7 +15,7 @@ def read(filename):
 
 setup(
     name="sepm-api",
-    version="0.0.5",
+    version="0.0.6",
     url="https://github.com/aalmero/sepm-api",
     license='MIT',
 
@@ -30,8 +30,13 @@ setup(
     install_requires=[],
 
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11'
     ],
 )
