@@ -75,6 +75,7 @@ class RestApiSession(object):
         self._parameters = {'version': self._version}
         self._parameters.update(locals())
         self._parameters['password'] = '*' * 36 + self._password[-4:]
+        self._parameters['payload']['password'] = '*' * 36 + self._password[-4:]
         self._parameters.pop('self')
         self._parameters.pop('logger')
         self._parameters.pop('__class__')
